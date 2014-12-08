@@ -17,5 +17,6 @@
     "app"
   ],
   "license": "MIT",
-  "homepage": "https://timseverien.com/projects/deep-link"
+  "homepage": "https://timseverien.com/projects/deep-link",
+  "ignore": ["node_modules"]
 }
