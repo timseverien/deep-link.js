@@ -1,0 +1,19 @@
+{
+  "name": "deep-link.js",
+  "main": "deep-link.js",
+  "version": "0.0.1",
+  
+  "authors": [
+    {
+      "name": "Tim Severien",
+      "email": "timseverien@gmail.com",
+      "url": "http://timseverien.com"
+    }
+  ],
+  
+  "description": "A tool designer for mobile deep links",
+  "keywords": ["mobile", "deep", "link", "app"],
+  "license": "MIT",
+  
+  "homepage": "https://timseverien.com/projects/deep-link"
+}
