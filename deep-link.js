@@ -58,19 +58,20 @@
 				el.getAttribute('data-store')
 			);
 		
+		if(!app) return;
+		
 		if(OS && app) {
-			// Apps are supported so override onclick
-			el.setAttribute('href', app);
-			
 			// Hijack click event
 			el.onclick = function(e) {
-				e.preventDefault();
-				e.stopPropagation();
-				
 				var start = getTime();
-				var delay = 800;
+				var delay = 2000;
+				
+				// Go to app
+				window.location.href = app;
 				
 				// Timeout to detect if the link worked
+				// TODO Cross-OS implementation?
+				// Only works on iOS
 				setTimeout(function() {
 					var now = getTime();
 					
@@ -85,8 +86,8 @@
 					}
 				}, delay);
 			};
-		} else if(!href || href === '#') {
-			// Apps are presumably not supported, and there’s no valid link
+		} else {
+			// Apps are presumably not supported
 			el.style.display = 'none';
 		}
 	};
