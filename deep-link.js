@@ -20,7 +20,7 @@
 		},
 		
 		iOS: {
-			store_prefix: 'https://itunes.apple.com/en/app/',
+			store_prefix: 'https://itunes.apple.com/en/app/id',
 			test: /iPhone|iPad|iPod/i
 		}
 	};
@@ -72,6 +72,7 @@
 				// Timeout to detect if the link worked
 				// TODO Cross-OS implementation?
 				// Only works on iOS
+				// https://gist.github.com/pulletsforever/2662899
 				setTimeout(function() {
 					var now = getTime();
 					
@@ -86,7 +87,7 @@
 					}
 				}, delay);
 			};
-		} else {
+		} else if(!href || href === '#') {
 			// Apps are presumably not supported
 			el.style.display = 'none';
 		}
