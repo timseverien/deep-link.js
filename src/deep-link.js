@@ -10,20 +10,21 @@
 	'use strict';
 	
 	/****************************************************************
-	 * SUPPORTED USER AGENTS
+	 * VARIABLES
 	 ****************************************************************/
 	
-	var OSs = {
-		android: {
-			store_prefix: 'https://play.google.com/store/apps/details?id=',
-			test: /Android/i
-		},
-		
-		iOS: {
-			store_prefix: 'https://itunes.apple.com/en/app/id',
-			test: /iPhone|iPad|iPod/i
-		}
-	};
+	var delay = 1200,
+		OSs = {
+			android: {
+				store_prefix: 'https://play.google.com/store/apps/details?id=',
+				test: /Android/i
+			},
+			
+			iOS: {
+				store_prefix: 'https://itunes.apple.com/en/app/id',
+				test: /iPhone|iPad|iPod/i
+			}
+		};
 	
 	
 	/****************************************************************
@@ -44,11 +45,16 @@
 		return new Date().getTime();
 	};
 	
+	var open = function(url) {
+		window.location.href = url;
+	};
+	
 	// Parse a single element
 	var parseElement = function(el) {
-		var OS = getUserAgent(),
-			href = el.getAttribute('href'),
+		var clicked, timeout,
+			OS = getUserAgent(),
 			
+			href = el.getAttribute('href'),
 			app = (
 				el.getAttribute('data-app-' + OS) ||
 				el.getAttribute('data-app')
@@ -59,38 +65,56 @@
 			);
 		
 		if(!app) return;
+		if(!href) el.setAttribute('href', app);
 		
 		if(OS && app) {
 			// Hijack click event
 			el.onclick = function(e) {
-				var start = getTime();
-				var delay = 2000;
+				e.preventDefault();
+				e.stopImmediatePropagation();
 				
-				// Go to app
-				window.location.href = app;
+				var win;
+				
+				// Store start time
+				var start = getTime();
+				clicked = true;
 				
 				// Timeout to detect if the link worked
-				// TODO Cross-OS implementation?
-				// Only works on iOS
-				// https://gist.github.com/pulletsforever/2662899
-				setTimeout(function() {
+				timeout = setTimeout(function() {
+					// Check if any of the values are unset
+					if(!clicked || !timeout) return;
+					
+					// Get current time
 					var now = getTime();
 					
-					// Do nothing if the user has been away for a while
-					if(now >= start + delay * 2) return;
+					// Reset things
+					clicked = false;
+					timeout = null;
 					
-					if(store) {
-						// Go to the store
-						window.location.href = OSs[OS].store_prefix + store;
-					} else if(href) {
-						window.location.href = href;
-					}
+					// Has the user left the screen? ABORT!
+					if(now - start >= delay * 2) return;
+					
+					// Open store or original link
+					if(store) open(OSs[OS].store_prefix + store);
+					else if(href) open(href);
 				}, delay);
+				
+				// Go to app
+				win = open(app);
 			};
 		} else if(!href || href === '#') {
 			// Apps are presumably not supported
 			el.style.display = 'none';
 		}
+		
+		// Triggered on blur
+		visibly.onHidden(function() {
+			if(!clicked || !timeout) return;
+			
+			// Reset everything
+			timeout = clearInterval(timeout);
+			clicked = false;
+		});
 	};
 	
 	

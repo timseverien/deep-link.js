@@ -16,3 +16,29 @@ See [http://timseverien.com/projects/deep-link/](http://timseverien.com/projects
 
 deep-link.js is licensed under the MIT license.
 [http://opensource.org/licenses/MIT](http://opensource.org/licenses/MIT)
+
+# Changelog
+
+## 0.0.5
+
+- Improved workflow
+- Added “visibly.js” – A Page Visible API polyfill
+- Some minor optimisations
+
+## 0.0.4
+
+Uhhhm, the bower file changed and listed a first release.
+
+## 0.0.3
+
+- iOS store prefix includes 'id'
+- Added a comment for later use
+- Reinstated the requirement of empty-ish href attribute before hiding a link
+
+## 0.0.2 (wrongly named to 1.0.2)
+
+- Some minor changes
+
+## 0.0.1
+
+- Initial release

@@ -1,7 +1,7 @@
 {
   "name": "deep-link.js",
-  "main": "deep-link.js",
-  "version": "0.0.4",
+  "main": "build/deep-link.min.js",
+  "version": "0.0.5",
   "authors": [
     {
       "name": "Tim Severien",
@@ -18,5 +18,7 @@
   ],
   "license": "MIT",
   "homepage": "https://timseverien.com/projects/deep-link",
-  "ignore": ["node_modules"]
+  "ignore": [
+    "node_modules"
+  ]
 }

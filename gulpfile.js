@@ -1,17 +1,27 @@
 var gulp = require('gulp'),
 	bump = require('gulp-bump'),
-	uglify = require('gulp-uglify'),
-	rename = require('gulp-rename');
+	concat = require('gulp-concat'),
+	rename = require('gulp-rename'),
+	uglify = require('gulp-uglify');
 
 gulp.task('bump', function() {
-	gulp.src(['./bower.json', './package.json'])
+	return gulp.src(['./bower.json', './package.json'])
 	.pipe(bump())
-	.pipe(gulp.dest('./'));
+	.pipe(gulp.dest('.'));
 });
 
 gulp.task('build', function() {
-	gulp.src('deep-link.js')
-	.pipe(uglify())
+	return gulp.src([
+		'src/*/**.js',
+		'src/**.js'
+	])
+	
+	// Build
+	.pipe(concat('deep-link.js'))
+	.pipe(gulp.dest('build'))
+	
+	// Minify
+	.pipe(uglify({ preserveComments: 'some' }))
 	.pipe(rename('deep-link.min.js'))
-	.pipe(gulp.dest('./'));
+	.pipe(gulp.dest('build'));
 });
