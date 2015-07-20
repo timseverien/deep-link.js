@@ -38,6 +38,8 @@
 		for(k in OSs) {
 			if(navigator.userAgent.match(OSs[k].test)) return k;
 		}
+
+		return '';
 	};
 
 	// Get current time in ms
@@ -53,14 +55,15 @@
 	var parseElement = function(el) {
 		var clicked, timeout,
 			OS = getUserAgent(),
+			OSAttr = OS.toLowerCase(),
 
 			href = el.getAttribute('href'),
 			app = (
-				el.getAttribute('data-app-' + OS) ||
+				el.getAttribute('data-app-' + OSAttr) ||
 				el.getAttribute('data-app')
 			),
 			store = (
-				el.getAttribute('data-store-' + OS) ||
+				el.getAttribute('data-store-' + OSAttr) ||
 				el.getAttribute('data-store')
 			);
 
