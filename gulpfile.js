@@ -15,11 +15,11 @@ gulp.task('build', function() {
 		'src/*/**.js',
 		'src/**.js'
 	])
-	
+
 	// Build
 	.pipe(concat('deep-link.js'))
 	.pipe(gulp.dest('build'))
-	
+
 	// Minify
 	.pipe(uglify({ preserveComments: 'some' }))
 	.pipe(rename('deep-link.min.js'))
