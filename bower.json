@@ -20,5 +20,8 @@
   "homepage": "https://timseverien.com/projects/deep-link",
   "ignore": [
     "node_modules"
-  ]
+  ],
+  "dependencies": {
+    "visibly.js": "~0.1.0"
+  }
 }
