@@ -23,6 +23,11 @@
 			iOS: {
 				store_prefix: 'https://itunes.apple.com/en/app/id',
 				test: /iPhone|iPad|iPod/i
+			},
+
+			windows: {
+				store_prefix: 'zune:navigate?appid=',
+				test: /Windows Phone|IEMobile/i
 			}
 		};
 

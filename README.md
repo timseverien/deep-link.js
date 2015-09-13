@@ -19,6 +19,11 @@ deep-link.js is licensed under the MIT license.
 
 # Changelog
 
+## 0.1.0
+
+- Add Windows Phone support
+- Trying to correctly use semver
+
 ## 0.0.5
 
 - Improved workflow
