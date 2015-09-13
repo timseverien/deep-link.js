@@ -2,7 +2,7 @@
  * Deep-link.js
  * https://timseverien.com/projects/deep-link/
  *
- * Copyright 2014
+ * Copyright 2015
  * Released under MIT license
  */
 
