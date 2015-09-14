@@ -15,6 +15,13 @@
 
 	var delay = 1200,
 		OSs = {
+			// Sometimes, Windows Phone contains Android in it’s UA
+			// To prevent it from overlapping with Android, try Windows first
+			windows: {
+				store_prefix: 'zune:navigate?appid=',
+				test: /Windows\s+Phone|IEMobile/i
+			},
+
 			android: {
 				store_prefix: 'https://play.google.com/store/apps/details?id=',
 				test: /Android/i
@@ -23,11 +30,6 @@
 			iOS: {
 				store_prefix: 'https://itunes.apple.com/en/app/id',
 				test: /iPhone|iPad|iPod/i
-			},
-
-			windows: {
-				store_prefix: 'zune:navigate?appid=',
-				test: /Windows Phone|IEMobile/i
 			}
 		};
 
