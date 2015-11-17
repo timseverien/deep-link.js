@@ -1,0 +1,139 @@
+@import url(//fonts.googleapis.com/css?family=Roboto:900);
+@import url(//fonts.googleapis.com/css?family=Open+Sans:400,600);
+
+html, body {
+	font-family: 'Open Sans', sans-serif;
+	line-height: 1.6;
+	
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+
+/****************************************************************
+ * BASE
+ ****************************************************************/
+
+h1, h2, h3, h4, h5, h6 {
+	color: #0f8071;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 900;
+	line-height: 1.2;
+	margin-bottom: 1rem;
+	margin-top: 4rem;
+	text-transform: uppercase;
+}
+
+pre {
+	font-family: Monaco, Consolas, 'Lucida Console', monospace;;
+	tab-size: 2;
+	white-space: pre-wrap;
+}
+
+strong { font-weight: 600; }
+code { color: #0f8071; }
+
+a {
+	color: #0f8071;
+	text-decoration: none;
+}
+
+a:hover { color: #278d7f; }
+a:active { color: #3f998d; }
+
+/****************************************************************
+ * LAYOUT
+ ****************************************************************/
+
+.wrapper { padding: 1em; }
+.clearfix { clear: both; }
+
+
+/****************************************************************
+ * HEADINGS
+ ****************************************************************/
+
+.heading--hero {
+	font-size: 3em;
+	margin-top: 0;
+}
+
+
+/****************************************************************
+ * CODE COMMENT
+ ****************************************************************/
+
+.code-comment {
+	
+}
+
+.code-comment__code {
+	display: block;
+	float: left;
+	width: 16em;
+}
+
+.code-comment__comment {
+	display: block;
+	float: left;
+}
+
+
+/****************************************************************
+ * EXAMPLES
+ ****************************************************************/
+
+.examples {
+	background-color: #0f8071;
+	color: #fff;
+}
+
+.examples__item__title {
+	color: #fff;
+	margin-top: 1rem;
+}
+
+.examples__item code {
+	color: #57a69c;
+}
+
+.examples__item .highlight {
+	color: #fff;
+}
+
+
+/****************************************************************
+ * BUTTON
+ ****************************************************************/
+
+.button {
+	background-color: #278d7f;
+	border-radius: 0.125em;
+	color: #fff;
+	cursor: pointer;
+	display: inline-block;
+	padding: 2em;
+}
+
+.button:hover {
+	background-color: #3f998d;
+	color: #fff;
+}
+
+.button:active {
+	background-color: #57a69c;
+}
+
+
+/****************************************************************
+ * MEDIA QUERIES
+ ****************************************************************/
+
+@media (min-width: 56em) {
+	.wrapper {
+		margin-left: auto;
+		margin-right: auto;
+		padding: 4em;
+		width: 48em;
+	}
+}

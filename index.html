@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" value="width=device-width, initial-scale=1" />
+
+	<title>Deep-link.js</title>
+
+	<link rel="stylesheet" href="css/normalize.css" />
+	<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div class="wrapper">
+	<h1 class="heading--hero">deep-link.js</h1>
+	<p><strong>deep-link.js</strong> is designed to add deep links to the web in an easy and stable way.</p>
+
+	<p>Mobile deep links are links that refer to apps instead of another web page. Opening things in apps can vastly improve a user&rsquo;s experience.</p>
+
+	<!--------------------------------
+	 - INSTALL
+	 -------------------------------->
+
+	<h2>Install</h2>
+
+	<pre><code>bower install deep-link.js</code></pre>
+
+	<p>Or download <strong>deep-link.js</strong> from the <a href="https://github.com/timseverien/deep-link.js">GitHub repository</a> and embed the script at the bottom of your body tag.</p>
+
+	<pre><code>&lt;script src="js/deep-link.js"&gt;&lt;script&gt;</code></pre>
+
+	<!--------------------------------
+	 - USAGE
+	 -------------------------------->
+
+	<h2>Usage</h2>
+
+	<div class="code-comment">
+<pre class="code-comment__code"><code>&lt;a <strong>href</strong>        ="..."
+<strong>data-app</strong>       ="..."
+<strong>data-app-[os]</strong>  ="..."
+<strong>data-store-[os]</strong>="..."&gt;</code></pre>
+
+<pre class="code-comment__comment">Fallback  (and unsupported OSs)
+Deep link (cross-OS)
+Deep link (OS-specific)
+Store ID  (OS-specific)</pre>
+
+		<div class="clearfix"></div>
+	</div>
+
+	<p>Mobile deep links are not intended for desktops, so there are several fallbacks, in this order:</p>
+
+	<ol>
+		<li>Open the deep link</li>
+		<li>Open the app in the store (if present)</li>
+		<li>Go to the href attribute (if present)</li>
+		<li>Absolutely nothing</li>
+	</ol>
+
+	<p>The more information you supply, the better.</p>
+
+	<!--------------------------------
+	 - GETTING DATA
+	 -------------------------------->
+
+	 <h2>Getting data</h2>
+
+	 <p>Personally, I found <a href="http://www.gotschemes.com/" target="_blank">GotSchemes</a> a very good resource to find different schemes and paths for apps.</p>
+</div>
+
+<div class="examples">
+	<div class="examples__item">
+		<div class="wrapper">
+			<h2 class="examples__item__title">Mobile-only link</h2>
+			<p>Send &ldquo;deep-link.js is awesome&rdquo; via WhatsApp.</p>
+
+			<pre><code>&lt;a data-app        ="<span class="highlight">whatsapp://send?text=Hello</span>"
+data-store-android ="<span class="highlight">com.whatsapp</span>"
+data-store-ios     ="<span class="highlight">310633997</span>"&gt;</code></pre>
+
+
+			<a data-app="whatsapp://send?text=deep-link.js%20is%20awesome"
+			data-store-android="com.whatsapp"
+			data-store-ios="310633997"
+			class="button">Send message via WhatsApp</a>
+
+			<p>Works on mobile, but not on desktop due to the missing <code>href</code> attribute.</p>
+		</div>
+	</div>
+
+	<div class="examples__item">
+		<div class="wrapper">
+			<h2 class="examples__item__title">Cross-device link to a shop</h2>
+			<p>Open <code>product_id</code> in the Ebay app.</p>
+
+			<pre><code>&lt;a href            ="<span class="highlight">http://www.ebay.com/sch/i.html?_nkw=keywords</span>"
+data-app           ="<span class="highlight">ebay://www.ebay.com/sch/i.html?_nkw=keywords</span>"
+data-store-android ="<span class="highlight">com.ebay.mobile</span>"
+data-store-ios     ="<span class="highlight">282614216</span>"&gt;</code></pre>
+
+
+			<a href="http://www.ebay.com/sch/i.html?_nkw=You%20don%27t%20know%20JS"
+			data-app="ebay://www.ebay.com/sch/i.html?_nkw=You%20don%27t%20know%20JS"
+			data-store-android="com.ebay.mobile"
+			data-store-ios="282614216"
+			class="button">Search on Ebay</a>
+		</div>
+	</div>
+
+	<div class="examples__item">
+		<div class="wrapper">
+			<h2 class="examples__item__title">Open Twitter account</h2>
+			<p>Open a specific Twitter account.</p>
+
+			<pre><code>&lt;a href            ="<span class="highlight">https://twitter.com/username</span>"
+data-app           ="<span class="highlight">twitter://user?screen_name=username</span>"
+data-store-android ="<span class="highlight">com.twitter.android</span>"
+data-store-ios     ="<span class="highlight">333903271</span>"&gt;</code></pre>
+
+
+			<a href="https://twitter.com/TimSeverien"
+			data-app="twitter://user?screen_name=TimSeverien"
+			data-store-android="com.twitter.android"
+			data-store-ios="333903271"
+			class="button">@TimSeverien on Twitter</a>
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+</div>
+
+<footer class="wrapper">
+	<p>With love, <a href="http://twitter.com/TimSeverien" target="_blank">@TimSeverien</a>. For more projects, visit <a href="https://timseverien.com" target="_blank">timseverien.com</a>.</p>
+</footer>
+
+<script src="js/deep-link.js"></script>
+
+</body>
+</html>
