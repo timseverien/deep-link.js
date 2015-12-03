@@ -10,7 +10,7 @@ Mobile deep links are links that refer to apps instead of another web page. Open
 
 ## Usage
 
-See [http://timseverien.com/projects/deep-link/](http://timseverien.com/projects/deep-link/)
+See [https://timseverien.com/deep-link.js/](https://timseverien.com/deep-link.js/)
 
 # License
 
