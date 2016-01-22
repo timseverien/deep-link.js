@@ -19,6 +19,9 @@ deep-link.js is licensed under the MIT license.
 
 # Changelog
 
+## 0.0.5-Intent
+- Add intent for modern Android browsers
+
 ## 0.1.0
 
 - Add Windows Phone support
