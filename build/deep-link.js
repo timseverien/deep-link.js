@@ -15,6 +15,13 @@
 
 	var delay = 1200,
 		OSs = {
+			// Sometimes, Windows Phone contains Android in it’s UA
+			// To prevent it from overlapping with Android, try Windows first
+			windows: {
+				store_prefix: 'zune:navigate?appid=',
+				test: /Windows\s+Phone|IEMobile/i
+			},
+
 			android: {
 				store_prefix: 'https://play.google.com/store/apps/details?id=',
 				test: /Android/i
@@ -23,11 +30,6 @@
 			iOS: {
 				store_prefix: 'https://itunes.apple.com/en/app/id',
 				test: /iPhone|iPad|iPod/i
-			},
-
-			windows: {
-				store_prefix: 'zune:navigate?appid=',
-				test: /Windows Phone|IEMobile/i
 			}
 		};
 
@@ -55,6 +57,26 @@
 	var open = function(url) {
 		window.location.href = url;
 	};
+
+	var handleAndroidBrowsers = function(app, store, href) {
+	  // Android Mobile
+	  var isAndroidMobile = navigator.userAgent.indexOf('Android') > -1 &&
+	                        navigator.userAgent.indexOf('Mozilla/5.0') > -1 &&
+	                        navigator.userAgent.indexOf('AppleWebKit') > -1;
+	  // Android Browser (not Chrome)
+	  var regExAppleWebKit = new RegExp(/AppleWebKit\/([\d.]+)/);
+	  var resultAppleWebKitRegEx = regExAppleWebKit.exec(navigator.userAgent);
+	  var appleWebKitVersion = (resultAppleWebKitRegEx === null ? null : parseFloat(regExAppleWebKit.exec(navigator.userAgent)[1]));
+	  var isAndroidBrowser = isAndroidMobile && appleWebKitVersion !== null && appleWebKitVersion < 537;
+
+	  if(isAndroidBrowser) {
+	    return 'intent:' + app.split(':')[1] + '#Intent;scheme=content;package' + 'package=' +
+	      store + ';S.browser_fallback_url=' + encodeURI(href);
+	  }
+	  else {
+	    return app;
+	  }
+	}
 
 	// Parse a single element
 	var parseElement = function(el) {
@@ -107,8 +129,10 @@
 					else if(href) open(href);
 				}, delay);
 
+				var finalURI = handleAndroidBrowsers(app, store, href);
+
 				// Go to app
-				win = open(app);
+				win = open(finalURI);
 			};
 		} else if(!href || href === '#') {
 			// Apps are presumably not supported
