@@ -58,7 +58,7 @@
 		window.location.href = url;
 	};
 
-	var handleAndroidBrowsers = function(app, store, href) {
+	var handleAndroidBrowsers = function(app, store, href, scheme) {
 	  // Android Mobile
 	  var isAndroidMobile = navigator.userAgent.indexOf('Android') > -1 &&
 	                        navigator.userAgent.indexOf('Mozilla/5.0') > -1 &&
@@ -67,10 +67,10 @@
 	  var regExAppleWebKit = new RegExp(/AppleWebKit\/([\d.]+)/);
 	  var resultAppleWebKitRegEx = regExAppleWebKit.exec(navigator.userAgent);
 	  var appleWebKitVersion = (resultAppleWebKitRegEx === null ? null : parseFloat(regExAppleWebKit.exec(navigator.userAgent)[1]));
-	  var isAndroidBrowser = isAndroidMobile && appleWebKitVersion !== null && appleWebKitVersion < 537;
+	  var isAndroidBrowser = isAndroidMobile && appleWebKitVersion !== null && appleWebKitVersion > 500;
 
 	  if(isAndroidBrowser) {
-	    return 'intent:' + app.split(':')[1] + '#Intent;scheme=content;package' + 'package=' +
+	    return 'intent:' + app.split(':')[1] + '#Intent;scheme=' + scheme + ';package=' +
 	      store + ';S.browser_fallback_url=' + encodeURI(href);
 	  }
 	  else {
@@ -92,7 +92,11 @@
 			store = (
 				el.getAttribute('data-store-' + OSAttr) ||
 				el.getAttribute('data-store')
+			),
+			scheme = (
+				el.getAttribute('data-android-scheme')
 			);
+			
 
 		if(!app) return;
 		if(!href) el.setAttribute('href', app);
@@ -129,7 +133,7 @@
 					else if(href) open(href);
 				}, delay);
 
-				var finalURI = handleAndroidBrowsers(app, store, href);
+				var finalURI = handleAndroidBrowsers(app, store, href, scheme);
 
 				// Go to app
 				win = open(finalURI);
