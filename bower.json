@@ -1,7 +1,7 @@
 {
   "name": "deep-link.js",
   "main": "build/deep-link.min.js",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "authors": [
     {
       "name": "Tim Severien",

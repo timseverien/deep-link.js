@@ -1,6 +1,6 @@
 {
   "name": "deep-link.js",
-  "version": "0.0.5",
+  "version": "0.1.1",
   "description": "A tool designer for mobile deep links",
   "main": "deep-link.js",
   "repository": {
