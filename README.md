@@ -1,3 +1,12 @@
+# DEPRECATION NOTICE
+
+This library is no longer maintained. The mobile app platform is now leaning towards a standard where regular URLs (more or less) redirect to an app. This involves hosting separate files, something this library cannot do for you.
+
+- Android [App Links](https://developer.android.com/training/app-links/index.html)
+- iOS [Universal Links](https://developer.apple.com/library/ios/documentation/General/Conceptual/AppSearch/UniversalLinks.html)
+
+I discourage using this library and encourage using this new standard instead.
+
 # deep-link.js
 
 **deep-link.js** is designed to add deep links to the web in an easy and stable way.
